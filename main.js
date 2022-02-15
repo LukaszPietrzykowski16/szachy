@@ -2,10 +2,11 @@
 const place = document.querySelectorAll('.place');
 const center = document.querySelectorAll('.center');
 
-const test = document.querySelector('#test');
+const test = document.querySelector('.test');
 
 let moveCounter = 0;
 
+// i need to make object white pieces and black pieces
 
 // pieces 
 const rookA8 = {
@@ -91,6 +92,91 @@ const pawnH7 = {
   img: "black-pawn.png"
 }
 
+// white 
+
+const rookA1 = {
+  name: 'rookA8',
+  place: 56,
+  img: "white-rook.png"
+}
+const knightB1 = {
+  name: 'knightB8',
+  place: 57,
+  img: "white-horse.png"
+}
+const bishopC1 = {
+  name: 'bishopC8',
+  place: 58,
+  img: "white-bishop.png"
+}
+const queenD1 = {
+  name: 'queenD8',
+  place: 59,
+  img: "white-queen.png"
+}
+const kingE1 = {
+  name: 'kingE8',
+  place: 60,
+  img: "white-king.png"
+}
+
+const bishopF1 = {
+  name: 'bishopF8',
+  place: 61,
+  img: "white-bishop.png"
+}
+const knightG1 = {
+  name: 'knightG8',
+  place: 62,
+  img: "white-horse.png"
+}
+const rookH1 = {
+  name: 'rookH8',
+  place: 63,
+  img: "white-rook.png"
+}
+const pawnA2 = {
+  name: 'pawnA7',
+  place: 48,
+  img: "white-pawn.png"
+}
+const pawnB2 = {
+  name: 'pawnB7',
+  place: 49,
+  img: "white-pawn.png"
+}
+
+const pawnC2 = {
+  name: 'pawnC7',
+  place: 50,
+  img: "white-pawn.png"
+}
+const pawnD2 = {
+  name: 'pawnD7',
+  place: 51,
+  img: "white-pawn.png"
+}
+const pawnE2 = {
+  name: 'pawnE7',
+  place: 52,
+  img: "white-pawn.png"
+}
+const pawnF2 = {
+  name: 'pawnF7',
+  place: 53,
+  img: "white-pawn.png"
+}
+const pawnG2 = {
+  name: 'pawnG7',
+  place: 54,
+  img: "white-pawn.png"
+}
+const pawnH2 = {
+  name: 'pawnH7',
+  place: 55,
+  img: "white-pawn.png"
+}
+
 
 newPiece()
 
@@ -111,30 +197,53 @@ function newPiece(){
   place[pawnF7.place].innerHTML = `<div id="${pawnF7.name}" class="center"> <img src=${pawnF7.img} width="50px">`;
   place[pawnG7.place].innerHTML = `<div id="${pawnG7.name}" class="center"> <img src=${pawnG7.img} width="50px">`
   place[pawnH7.place].innerHTML = `<div id="${pawnH7.name}" class="center"> <img src=${pawnH7.img} width="50px">`;
+  place[rookA1.place].innerHTML = `<div id="${rookA1.name}" class="center"> <img src=${rookA1.img} width="50px">`;
+  place[knightB1.place].innerHTML = `<div id="${knightB1.name}" class="center"> <img src=${knightB1.img} width="50px">`;
+  place[bishopC1.place].innerHTML = `<div id="${bishopC1.name}" class="center"> <img src=${bishopC1.img} width="50px">`;
+  place[queenD1.place].innerHTML = `<div id="${queenD1.name}" class="center"> <img src=${queenD1.img} width="50px">`;
+  place[kingE1.place].innerHTML = `<div id="${kingE1.name}" class="center"> <img src=${kingE1.img} width="50px">`;
+  place[bishopF1.place].innerHTML = `<div id="${bishopF1.name}" class="center"> <img src=${bishopF1.img} width="50px">`;
+  place[knightG1.place].innerHTML = `<div id="${knightG1.name}" class="center"> <img src=${knightG1.img} width="50px">`;
+  place[rookH1.place].innerHTML = `<div id="${rookH1.name}" class="center"> <img src=${rookH1.img} width="50px">`;
+  place[pawnA2.place].innerHTML = `<div id="${pawnA2.name}" class="center"> <img src=${pawnA2.img} width="50px">`;
+  place[pawnB2.place].innerHTML = `<div id="${pawnB2.name}" class="center"> <img src=${pawnB2.img} width="50px">`;
+  place[pawnC2.place].innerHTML = `<div id="${pawnC2.name}" class="center"> <img src=${pawnC2.img} width="50px">`;
+  place[pawnD2.place].innerHTML = `<div id="${pawnD2.name}" class="center"> <img src=${pawnD2.img} width="50px">`;
+  place[pawnE2.place].innerHTML = `<div id="${pawnE2.name}" class="center"> <img src=${pawnE2.img} width="50px">`;
+  place[pawnF2.place].innerHTML = `<div id="${pawnF2.name}" class="center"> <img src=${pawnF2.img} width="50px">`;
+  place[pawnG2.place].innerHTML = `<div id="${pawnG2.name}" class="center"> <img src=${pawnG2.img} width="50px">`
+  place[pawnH2.place].innerHTML = `<div id="${pawnH2.name}" class="center"> <img src=${pawnH2.img} width="50px">`;
 }
 
 const bruh = document.querySelector('#rookA8');
 
-bruh.addEventListener('click', () => {
-  bruh.classList.add('red');
-  checkPosition()
- 
+const center2 = document.querySelectorAll('.center');
+
+center2.forEach(piece => {
+  piece.addEventListener('click', ()  => {
+     
+      console.log(piece);
+      checkPosition();
+      
+     })
 })
+
 
 
 function checkPosition() {
   // golden script XDD
   for (let i = 0; i < place.length; i++) {
-    place[i].addEventListener("click", function() {
+    place[i].addEventListener("click", () => {
           let newPosition = i;
           changePosition(newPosition)
+          console.log(newPosition)
         });
       }
 }
 
 function changePosition(newPosition) {
   removePiece()
-  rookA8.place = newPosition;
+  // rookA8.place = newPosition;
   newPiece()
  
 }
