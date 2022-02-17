@@ -4,7 +4,7 @@ const center = document.querySelectorAll('.center');
 
 const test = document.querySelector('.test');
 
-let moveCounter = 0;
+let moveCounter = 1;
 
 // pieces 
 const blackPieces = [
@@ -179,10 +179,18 @@ const whitePieces = [
   }
 ]
 
-
+// i need to optimize game state
+function gameState() {
+    whiteTour()
+    if (moveCounter % 2 == 0) {
+      blackTour()
+    } else {
+      whiteTour()
+    }
+}
 
 newPiece()
-
+gameState()
 function newPiece(){
   for (let i=0; i<64; i++) {
     place[i].innerHTML = '';
@@ -197,7 +205,8 @@ function newPiece(){
 
 }
 
- {
+
+function whiteTour() {
   const center2 = document.querySelectorAll('.center');
 
   center2.forEach(piece => {
@@ -236,8 +245,56 @@ function newPiece(){
 
     newPiece()
   }
-  
+  moveCounter++
+  console.log(moveCounter)
 }
+
+
+function blackTour() {
+  const center2 = document.querySelectorAll('.center');
+
+  center2.forEach(piece => {
+    piece.addEventListener('click', ()  => {
+        checkPosition();
+       })
+  })
+  
+  
+  
+  function checkPosition() {
+    // golden script XDD
+   
+    for (let i = 0; i < place.length; i++) {
+      place[i].addEventListener("click", () => {
+            let newPosition = i;
+            // console.log(newPosition)
+            selectPawn(newPosition)
+            console.log(newPosition)
+           
+          });
+         
+        }
+  }
+  
+  let index = 0;
+  function selectPawn(newPosition) {
+    
+    for (let j=0; j<16; j++) {
+  
+      if (blackPieces[j].place == newPosition) { index = j; break; }
+     
+    }
+    blackPieces[index].place = newPosition;
+    console.log( blackPieces[index])
+
+    newPiece()
+  }
+   moveCounter++
+}
+
+ 
+  
+
 
 
 
