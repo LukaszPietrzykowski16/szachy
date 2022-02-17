@@ -6,10 +6,6 @@ const test = document.querySelector('.test');
 
 let moveCounter = 0;
 
-
-
-// i need to make object white pieces and black pieces
-
 // pieces 
 const blackPieces = [
   rookA8 = {
@@ -188,6 +184,9 @@ const whitePieces = [
 newPiece()
 
 function newPiece(){
+  for (let i=0; i<64; i++) {
+    place[i].innerHTML = '';
+  }
   for (let i=0; i<16; i++){
     place[blackPieces[i].place].innerHTML = `<div id="${blackPieces[i].name}" class="center"> <img src=${blackPieces[i].img} width="50px">`;
   }
@@ -198,61 +197,47 @@ function newPiece(){
 
 }
 
-const bruh = document.querySelector('#rookA8');
-let pieceSelected = false;
-const center2 = document.querySelectorAll('.center');
+ {
+  const center2 = document.querySelectorAll('.center');
 
-center2.forEach(piece => {
-  piece.addEventListener('click', ()  => {
-      checkPosition();
-     })
-})
-
-
-
-function checkPosition() {
-  // golden script XDD
- 
-  for (let i = 0; i < place.length; i++) {
-    place[i].addEventListener("click", () => {
-          let newPosition = i;
-          console.log(newPosition)
-          selectPawn(newPosition)
-          
-         
-        });
-       
-      }
-}
-
-
-function selectPawn(newPosition) {
-  for (let j=0; j<16; j++) {
+  center2.forEach(piece => {
+    piece.addEventListener('click', ()  => {
+        checkPosition();
+       })
+  })
+  
+  
+  
+  function checkPosition() {
+    // golden script XDD
+   
+    for (let i = 0; i < place.length; i++) {
+      place[i].addEventListener("click", () => {
+            let newPosition = i;
+            // console.log(newPosition)
+            selectPawn(newPosition)
+            console.log(newPosition)
            
-    if (whitePieces[j].place == newPosition) {
-
-      whitePieces[j].place = 35;
-      let exactPawn = whitePieces[j].place;
-      bruh2(exactPawn, newPosition)
-    }
+          });
+         
+        }
   }
+  
+  let index = 0;
+  function selectPawn(newPosition) {
+    
+    for (let j=0; j<16; j++) {
+  
+      if (whitePieces[j].place == newPosition) { index = j; break; }
+     
+    }
+    whitePieces[index].place = newPosition;
+    console.log( whitePieces[index])
 
-  // removePiece(exactPawn)
-  newPiece()
+    newPiece()
+  }
+  
 }
 
-function bruh2 (exactPawn) {
-  console.log(exactPawn)
-  exactPawn = 45;
-}
-
-
-function removePiece(exactPawn) {
-  console.log(exactPawn)
-  exactPawn.innerHTML = '';
-  moveCounter++;
-  console.log(whitePieces)
-  // console.log(moveCounter);
-}
 
 
